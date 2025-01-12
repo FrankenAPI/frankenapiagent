@@ -1,0 +1,28 @@
+{
+  "name": "FrankenAPIAgent Dev Container",
+  "build": {
+    "dockerfile": "Dockerfile",
+    "context": ".."
+  },
+  "settings": {
+    "python.defaultInterpreterPath": "/usr/local/bin/python",
+    "editor.formatOnSave": true
+  },
+  "extensions": [
+    "ms-python.python",
+    "ms-python.vscode-pylance",
+    "editorconfig.editorconfig",
+    "ms-toolsai.jupyter"
+  ],
+  "postCreateCommand": "pip install -r /workspace/requirements.txt",
+  "remoteUser": "vscode",
+  "mounts": [
+    "source=${localWorkspaceFolder},target=/app,type=bind,consistency=cached"
+  ],
+  "forwardPorts": [8000],
+  "remoteEnv": {
+    "OPENAPI_SPEC_PATH": "/workspace/spec.yaml",
+    "LLM_API_KEY": "your-openai-api-key",
+    "TARGET_API_BASE": "http://localhost:8000"
+  }
+}
